@@ -27,8 +27,6 @@
     h1, h2 { color: #2c4060; }
     ul, ol { padding-left: 25px; }
     li { margin-bottom: 8px; }
-    .progress-container { width: 100%; background-color: #ddd; border-radius: 5px; margin: 10px 0; }
-    .progress-bar { height: 20px; background-color: #4CAF50; border-radius: 5px; text-align: center; color: white; line-height: 20px; }
     .matrix-container { display: flex; justify-content: center; margin: 20px 0; }
     .matrix { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; width: 400px; height: 300px; }
     .matrix-cell { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; border: 1px solid #ccc; text-align: center; }
@@ -40,8 +38,84 @@
 </head>
 <body>
   <div id="slides">
-    <!-- Slides omitted for brevity, keep previous slide markup unchanged -->
-    <!-- ... Slide 15 ... -->
+    <div class="slide active">
+      <h1>Hello</h1>
+      <p>Welcome to this brief lesson on Machine Learning evaluation metrics. You'll learn key metrics for regression, classification, hypothesis testing, and how to choose the right one.</p>
+      <div class="page-number">1/15</div>
+    </div>
+    <div class="slide">
+      <h2>Regression Metrics</h2>
+      <table>
+        <tr><th>Metric</th><th>Definition</th><th>Goal</th></tr>
+        <tr><td>MAE</td><td>Mean Absolute Error: avg |y - ŷ|</td><td>Smaller</td></tr>
+        <tr><td>MSE</td><td>Mean Squared Error: avg (y - ŷ)²</td><td>Smaller</td></tr>
+        <tr><td>RMSE</td><td>√MSE: error in original units</td><td>Smaller</td></tr>
+        <tr><td>MAPE</td><td>Mean Abs % Error: avg |(y - ŷ)/y|</td><td>Smaller</td></tr>
+        <tr><td>R²</td><td>Variance explained: 1 - SS_res/SS_tot</td><td>Closer to 1</td></tr>
+        <tr><td>Adj R²</td><td>R² penalized for extra features</td><td>Closer to 1</td></tr>
+      </table>
+      <div class="page-number">2/15</div>
+    </div>
+    <div class="slide">
+      <h2>Classification Metrics</h2>
+      <table>
+        <tr><th>Metric</th><th>Definition</th><th>Goal</th></tr>
+        <tr><td>AUC</td><td>Area under ROC curve (TPR vs FPR)</td><td>Closer to 1</td></tr>
+        <tr><td>Accuracy</td><td>(TP+TN)/Total</td><td>Higher</td></tr>
+        <tr><td>Precision</td><td>TP/(TP+FP)</td><td>Higher</td></tr>
+        <tr><td>Recall</td><td>TP/(TP+FN)</td><td>Higher</td></tr>
+        <tr><td>F1 Score</td><td>2·(Prec·Rec)/(Prec+Rec)</td><td>Higher</td></tr>
+        <tr><td>MCC</td><td>Balanced measure of confusion matrix</td><td>Closer to 1</td></tr>
+      </table>
+      <div class="page-number">3/15</div>
+    </div>
+    <div class="slide">
+      <h2>Confusion Matrix</h2>
+      <div class="example-box large-text">Example: TP=30, FP=20, FN=10, TN=40 for a test on 100 patients.</div>
+      <table>
+        <tr><th></th><th>Predicted +</th><th>Predicted -</th></tr>
+        <tr><th>Actual +</th><td>True Positive (TP)</td><td>False Negative (FN)</td></tr>
+        <tr><th>Actual -</th><td>False Positive (FP)</td><td>True Negative (TN)</td></tr>
+      </table>
+      <div class="page-number">4/15</div>
+    </div>
+    <div class="slide">
+      <h2>Hypothesis Testing</h2>
+      <p><strong>Null Hypothesis (H<sub>0</sub>):</strong> No association between variables.</p>
+      <p><strong>Alternative Hypothesis (H<sub>A</sub>):</strong> Variables are associated.</p>
+      <div class="page-number">5/15</div>
+    </div>
+    <div class="slide">
+      <h2>Chi-Square Test Examples</h2>
+      <ol>
+        <li>Gender vs Preference: Tea vs Coffee survey.</li>
+        <li>Ad Campaign: Click vs No-Click by Age group.</li>
+        <li>Device Type: Purchase vs No-Purchase by Device.</li>
+      </ol>
+      <div class="page-number">6/15</div>
+    </div>
+    <div class="slide">
+      <h2>Chi-Square Test & p-Value</h2>
+      <p><strong>χ²:</strong> Σ (O–E)²/E compares observed vs expected counts.</p>
+      <p><strong>df:</strong> (rows–1)×(cols–1)</p>
+      <p><strong>p-value:</strong> Probability of χ² under null. If &lt;0.05, reject null.</p>
+      <div class="page-number">7/15</div>
+    </div>
+    <div class="slide" style="font-size:1.5em;">
+      <h2>How to Choose Metrics</h2>
+      <ul>
+        <li>Problem type: regression vs classification.</li>
+        <li>Error cost: FNs vs FPs.</li>
+        <li>Report at least two metrics for clarity.</li>
+        <li>Use statistical tests when needed.</li>
+      </ul>
+      <div class="page-number">8/15</div>
+    </div>
+    <div class="slide">
+      <h2>Thank You</h2>
+      <p>Questions?</p>
+      <div class="page-number">9/15</div>
+    </div>
   </div>
   <div class="controls">
     <button id="prev">&lt; Previous</button>
@@ -54,6 +128,7 @@
       function showSlide(i) {
         slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
       }
+      showSlide(index);
       document.getElementById('next').addEventListener('click', function() {
         index = (index + 1) % slides.length;
         showSlide(index);
