@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML Model Evaluation Metrics</n>  
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .slide { display: none; padding: 40px; box-sizing: border-box; height: 100vh; }
+    .slide.active { display: block; }
+    .controls { position: fixed; bottom: 20px; width: 100%; text-align: center; }
+    button { padding: 10px 20px; font-size: 16px; margin: 0 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f4f4f4; }
+  </style>
+</head>
+<body>
+  <div id="slides">
+    <div class="slide active">
+      <h1>ML Model Evaluation Metrics</h1>
+      <p>Brief lesson on key metrics for regression, classification, tests, and how to choose.</p>
+    </div>
+    <div class="slide">
+      <h2>Regression Metrics</h2>
+      <table>
+        <tr><th>Metric</th><th>Definition</th><th>Goal</th></tr>
+        <tr><td>MAE</td><td>Mean Absolute Error: avg |y - ŷ|</td><td>Smaller</td></tr>
+        <tr><td>MSE</td><td>Mean Squared Error: avg (y - ŷ)²</td><td>Smaller</td></tr>
+        <tr><td>RMSE</td><td>√MSE: error in original units</td><td>Smaller</td></tr>
+        <tr><td>MAPE</td><td>Mean Abs % Error: avg |(y - ŷ)/y|</td><td>Smaller</td></tr>
+        <tr><td>R²</td><td>Variance explained: 1 - SS_res/SS_tot</td><td>Closer to 1</td></tr>
+        <tr><td>Adj R²</td><td>R² penalized for extra features</td><td>Closer to 1</td></tr>
+      </table>
+    </div>
+    <div class="slide">
+      <h2>Classification Metrics</h2>
+      <table>
+        <tr><th>Metric</th><th>Definition</th><th>Goal</th></tr>
+        <tr><td>AUC</td><td>Area under ROC curve (TPR vs FPR)</td><td>Closer to 1</td></tr>
+        <tr><td>Accuracy</td><td>(TP+TN)/Total</td><td>Higher</td></tr>
+        <tr><td>Precision</td><td>TP/(TP+FP)</td><td>Higher</td></tr>
+        <tr><td>Recall</td><td>TP/(TP+FN)</td><td>Higher</td></tr>
+        <tr><td>F1 Score</td><td>2·(Prec·Rec)/(Prec+Rec)</td><td>Higher</td></tr>
+        <tr><td>MCC</td><td>Balanced measure of confusion matrix</td><td>Closer to 1</td></tr>
+      </table>
+    </div>
+    <div class="slide">
+      <h2>Confusion Matrix</h2>
+      <table>
+        <tr><th></th><th>Predicted +</th><th>Predicted -</th></tr>
+        <tr><th>Actual +</th><td>True Positive (TP)</td><td>False Negative (FN)</td></tr>
+        <tr><th>Actual -</th><td>False Positive (FP)</td><td>True Negative (TN)</td></tr>
+      </table>
+      <ul>
+        <li>TP: Predicted yes, actually yes</li>
+        <li>FP: Predicted yes, actually no</li>
+        <li>FN: Predicted no, actually yes</li>
+        <li>TN: Predicted no, actually no</li>
+      </ul>
+    </div>
+    <div class="slide">
+      <h2>Chi-Square Test & p-Value</h2>
+      <p><strong>χ²</strong>: Σ (O–E)²/E compares observed vs expected counts.</p>
+      <p><strong>df</strong>: (rows–1)×(cols–1)</p>
+      <p><strong>p-value</strong>: Probability of χ² under null. If &lt;0.05, reject null (variables linked).</p>
+    </div>
+    <div class="slide">
+      <h2>How to Choose Metrics</h2>
+      <ul>
+        <li>Problem type: regression vs classification.</li>
+        <li>Error cost: FNs vs FPs.</li>
+        <li>Report at least two metrics for clarity.</li>
+        <li>Use statistical tests (p-values, χ²) when needed.</li>
+      </ul>
+    </div>
+    <div class="slide">
+      <h2>Thank You</h2>
+      <p>Questions?</p>
+    </div>
+  </div>
+  <div class="controls">
+    <button id="prev">Previous</button>
+    <button id="next">Next</button>
+  </div>
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let index = 0;
+    document.getElementById('next').onclick = () => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    };
+    document.getElementById('prev').onclick = () => {
+      slides[index].classList.remove('active');
+      index = (index - 1 + slides.length) % slides.length;
+      slides[index].classList.add('active');
+    };
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') document.getElementById('next').click();
+      if (e.key === 'ArrowLeft') document.getElementById('prev').click();
+    });
+  </script>
+</body>
+</html>
