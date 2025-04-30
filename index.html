@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ML Model Evaluation Metrics</n>  
+  <title>ML Model Evaluation Metrics</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    .slide { display: none; padding: 40px; box-sizing: border-box; height: 100vh; }
+    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    .slide { display: none; padding: 40px; box-sizing: border-box; height: 100vh; background: #fff; color: #000; }
     .slide.active { display: block; }
     .controls { position: fixed; bottom: 20px; width: 100%; text-align: center; }
     button { padding: 10px 20px; font-size: 16px; margin: 0 10px; }
@@ -25,10 +25,10 @@
       <h2>Regression Metrics</h2>
       <table>
         <tr><th>Metric</th><th>Definition</th><th>Goal</th></tr>
-        <tr><td>MAE</td><td>Mean Absolute Error: avg |y - ŷ|</td><td>Smaller</td></tr>
-        <tr><td>MSE</td><td>Mean Squared Error: avg (y - ŷ)²</td><td>Smaller</td></tr>
+        <tr><td>MAE</td><td>Mean Absolute Error: avg |y - ŷ|</td><td>Smaller</td></tr>
+        <tr><td>MSE</td><td>Mean Squared Error: avg (y - ŷ)²</td><td>Smaller</td></tr>
         <tr><td>RMSE</td><td>√MSE: error in original units</td><td>Smaller</td></tr>
-        <tr><td>MAPE</td><td>Mean Abs % Error: avg |(y - ŷ)/y|</td><td>Smaller</td></tr>
+        <tr><td>MAPE</td><td>Mean Abs % Error: avg |(y - ŷ)/y|</td><td>Smaller</td></tr>
         <tr><td>R²</td><td>Variance explained: 1 - SS_res/SS_tot</td><td>Closer to 1</td></tr>
         <tr><td>Adj R²</td><td>R² penalized for extra features</td><td>Closer to 1</td></tr>
       </table>
@@ -84,21 +84,23 @@
     <button id="next">Next</button>
   </div>
   <script>
-    const slides = document.querySelectorAll('.slide');
-    let index = 0;
-    document.getElementById('next').onclick = () => {
-      slides[index].classList.remove('active');
-      index = (index + 1) % slides.length;
-      slides[index].classList.add('active');
-    };
-    document.getElementById('prev').onclick = () => {
-      slides[index].classList.remove('active');
-      index = (index - 1 + slides.length) % slides.length;
-      slides[index].classList.add('active');
-    };
-    document.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight') document.getElementById('next').click();
-      if (e.key === 'ArrowLeft') document.getElementById('prev').click();
+    document.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.slide');
+      let index = 0;
+      document.getElementById('next').addEventListener('click', () => {
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+      });
+      document.getElementById('prev').addEventListener('click', () => {
+        slides[index].classList.remove('active');
+        index = (index - 1 + slides.length) % slides.length;
+        slides[index].classList.add('active');
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') document.getElementById('next').click();
+        if (e.key === 'ArrowLeft') document.getElementById('prev').click();
+      });
     });
   </script>
 </body>
