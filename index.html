@@ -6,21 +6,26 @@
   <title>ML Model Evaluation Metrics</title>
   <style>
     body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    .slide { display: none; padding: 40px; box-sizing: border-box; height: 100vh; background: #fff; color: #000; }
+    .slide { position: relative; display: none; padding: 40px; box-sizing: border-box; height: 100vh; background: #fff; color: #000; }
     .slide.active { display: block; }
     .controls { position: fixed; bottom: 20px; width: 100%; text-align: center; }
     button { padding: 10px 20px; font-size: 16px; margin: 0 10px; }
     table { width: 100%; border-collapse: collapse; margin-top: 20px; }
     th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
     th { background: #f4f4f4; }
+    .page-number { position: absolute; bottom: 10px; right: 20px; font-size: 14px; color: #666; }
+    .large-text { font-size: 2em; text-align: center; margin-top: 20px; }
   </style>
 </head>
 <body>
   <div id="slides">
+    <!-- Slide 1 -->
     <div class="slide active">
-      <h1>ML Model Evaluation Metrics</h1>
-      <p>Brief lesson on key metrics for regression, classification, tests, and how to choose.</p>
+      <h1>Hello</h1>
+      <p>Welcome to this brief lesson on Machine Learning evaluation metrics. You'll learn key metrics for regression, classification, hypothesis testing, and how to choose the right one.</p>
+      <div class="page-number">1/9</div>
     </div>
+    <!-- Slide 2 -->
     <div class="slide">
       <h2>Regression Metrics</h2>
       <table>
@@ -32,7 +37,9 @@
         <tr><td>R²</td><td>Variance explained: 1 - SS_res/SS_tot</td><td>Closer to 1</td></tr>
         <tr><td>Adj R²</td><td>R² penalized for extra features</td><td>Closer to 1</td></tr>
       </table>
+      <div class="page-number">2/9</div>
     </div>
+    <!-- Slide 3 -->
     <div class="slide">
       <h2>Classification Metrics</h2>
       <table>
@@ -44,7 +51,9 @@
         <tr><td>F1 Score</td><td>2·(Prec·Rec)/(Prec+Rec)</td><td>Higher</td></tr>
         <tr><td>MCC</td><td>Balanced measure of confusion matrix</td><td>Closer to 1</td></tr>
       </table>
+      <div class="page-number">3/9</div>
     </div>
+    <!-- Slide 4 -->
     <div class="slide">
       <h2>Confusion Matrix</h2>
       <table>
@@ -58,14 +67,36 @@
         <li>FN: Predicted no, actually yes</li>
         <li>TN: Predicted no, actually no</li>
       </ul>
+      <div class="large-text">Example: TP=30, FP=20, FN=10, TN=40 for a test on 100 patients.</div>
+      <div class="page-number">4/9</div>
     </div>
+    <!-- Slide 5 -->
+    <div class="slide">
+      <h2>Hypothesis Testing</h2>
+      <p><strong>Null Hypothesis (H<sub>0</sub>)</strong>: No association between variables.</p>
+      <p><strong>Alternative Hypothesis (H<sub>A</sub>)</strong>: Variables are associated.</p>
+      <div class="page-number">5/9</div>
+    </div>
+    <!-- Slide 6 -->
+    <div class="slide">
+      <h2>Chi-Square Test Examples</h2>
+      <ol>
+        <li>Gender vs Preference: Tea vs Coffee survey.</li>
+        <li>Ad Campaign: Click vs No-Click by Age group.</li>
+        <li>Device Type: Purchase vs No-Purchase by Device.</li>
+      </ol>
+      <div class="page-number">6/9</div>
+    </div>
+    <!-- Slide 7 -->
     <div class="slide">
       <h2>Chi-Square Test & p-Value</h2>
       <p><strong>χ²</strong>: Σ (O–E)²/E compares observed vs expected counts.</p>
       <p><strong>df</strong>: (rows–1)×(cols–1)</p>
       <p><strong>p-value</strong>: Probability of χ² under null. If &lt;0.05, reject null (variables linked).</p>
+      <div class="page-number">7/9</div>
     </div>
-    <div class="slide">
+    <!-- Slide 8 -->
+    <div class="slide" style="font-size:1.5em;">
       <h2>How to Choose Metrics</h2>
       <ul>
         <li>Problem type: regression vs classification.</li>
@@ -73,10 +104,13 @@
         <li>Report at least two metrics for clarity.</li>
         <li>Use statistical tests (p-values, χ²) when needed.</li>
       </ul>
+      <div class="page-number">8/9</div>
     </div>
+    <!-- Slide 9 -->
     <div class="slide">
       <h2>Thank You</h2>
       <p>Questions?</p>
+      <div class="page-number">9/9</div>
     </div>
   </div>
   <div class="controls">
